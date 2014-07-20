@@ -1,0 +1,64 @@
+@model IEnumerable<MyCRUDMVCSamples.Models.Customers>
+
+@{
+    ViewBag.Title = "Customer List";
+}
+<script src="~/Scripts/AppScripts/IndexMainScripts.js"></script>
+
+<h2>Customer List</h2>
+
+
+@using (Html.BeginForm())
+{
+
+<table class="table">
+    <tr>
+        <th>
+            
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            Middle Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <div class="checkclassdiv">
+                <input type="checkbox" value=@item.Id name=@item.Id /> 
+            </div>  
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        
+        <td>
+            <input type="button" id="btEdit" value="Edit" onclick="CallEdit(@item.Id);" class="btn btn-default"/></td>
+        <td>
+            <input type="button" id="btDetails" value="Detail" onclick="CallDetails(@item.Id);" class="btn btn-default"/>
+        </td>
+        <td>
+            <input type="button" id="btDeleteCust" value="Remove" onclick="CallDelete(@item.Id);" class="btn btn-default" />
+
+        </td>
+        
+    </tr>
+}
+</table>
+    <input type="button" id="bt-CreateNew-Customer" value="Create New" class="btn btn-default" />
+    <input type="button" id="bt-selectid-list-delete" name="bt-selectid-list-delete" class="btn btn-default"  value="Remove Selected Record" />
